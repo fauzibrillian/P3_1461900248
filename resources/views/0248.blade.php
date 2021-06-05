@@ -18,6 +18,7 @@
       <th scope="col">No.</th>
       <th scope="col">Judul</th>
       <th scope="col">Tahun Terbit</th>
+      <th scope="col">Tambah Data</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,11 @@
             <th scope="row">{{$key+1}}</th>
             <td>{{$x->judul}}</td>
             <td>{{$x->tahun_terbit}}</td>
+            <td>
+            <a class="btn btn-primary" href="#" role="button">Tambah</a>
+            <a class="btn btn-primary" href="#" role="button">Hapus</a>
+            </td>
+            
         </tr>
     @endforeach
   </tbody>
