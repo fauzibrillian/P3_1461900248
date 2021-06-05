@@ -18,7 +18,6 @@
       <th scope="col">No.</th>
       <th scope="col">Judul</th>
       <th scope="col">Tahun Terbit</th>
-      <th scope="col">Jenis</th>
     </tr>
   </thead>
   <tbody>
@@ -26,8 +25,7 @@
         <tr>
             <th scope="row">{{$key+1}}</th>
             <td>{{$x->judul}}</td>
-            <td>{{$x->tahun }}</td>
-            <td>{{$x->jenis}}</td>
+            <td>{{$x->tahun_terbit}}</td>
         </tr>
     @endforeach
   </tbody>

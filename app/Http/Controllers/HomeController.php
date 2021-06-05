@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use app\Http\Controllers\Models\buku;
 
 
 class HomeController extends Controller
@@ -16,17 +17,6 @@ class HomeController extends Controller
             return view('0248', ['buku' => $buku]);
         }
 
-        public function search(Request $request)
-        {
-            $buku=$request->buku
-            $buku = DB::table('buku')
-
-                ->select('buku.judul','buku.tahun_terbit','jenis_buku.jenis','rak_buku.id_buku','rak_buku.id_jenis_code')
-                ->get();
-                // print_r($siswa);
-                // exit;
-            return view('0248', ['buku' => $buku]);
-        }
     
         /**
          * Show the form for creating a new resource.
