@@ -11,39 +11,26 @@
     <title>1461900248</title>
   </head>
   <body>
-    <h1>Tabel Buku</h1>
-    <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">Judul</th>
-      <th scope="col">Tahun Terbit</th>
-      <th scope="col">Tambah Data</th>
-    </tr>
-  </thead>
-  <tbody>
-  <a class="btn btn-primary" href="/buku/create" role="button">Tambah</a>
-  @foreach ($buku as $key=> $x)
-        <tr>
-            <th scope="row">{{$key+1}}</th>
-            <td>{{$x->judul}}</td>
-            <td>{{$x->tahun_terbit}}</td>
-            <td>
-            <a class="btn btn-primary" href="/buku/{{ $x->id }}/edit/" role="button">Edit</a>
-            <form action="{{ route('buku.destroy', $x->id) }}" method="POST" class="inline-block">
-                            {!! method_field('delete') . csrf_field() !!}
-                            <button type="submit" class="btn btn-danger">
-                                Delete
-                            </button>
-            </form>                
-            </td>
-            
-        </tr>
-        
-    @endforeach
-  </tbody>
-</table>
+    <h1>Edit data</h1>
+    <div class="container">
+        <div class="col-md-12">
+            <div style="height: 15px;"></div>
+            <form action="{{ route('buku.update', $buku->id) }}" method="post">
+            @csrf
+            @method('put')
+                <div class="form-group">
+                    <label for="exampleInputEmail1">judul</label>
+                    <input type="text" class="form-control" id="judul" name="judul" value="{{ old('judul') ?? $buku->judul }}" >
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tahun Terbit</label>
+                    <input type="text" class="form-control" id="tahun_terbit" name="tahun_terbit" value="{{ old('tahun_terbit') ?? $buku->tahun_terbit }}" >
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
 
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

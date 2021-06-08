@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use app\Http\Controllers\Models\buku;
+use App\Models\buku;
 
 
 class HomeController extends Controller
@@ -25,7 +25,7 @@ class HomeController extends Controller
          */
         public function create()
         {
-            return view('0248_home');
+            return view('createbuku');
         }
     
         /**
@@ -43,7 +43,7 @@ class HomeController extends Controller
             $save_buku->judul = $judul;
             $save_buku->tahun_terbit = $tahun;
             $save_buku->save();
-            return redirect('guru');
+            return redirect('buku');
         }
     
         /**
@@ -63,11 +63,10 @@ class HomeController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function edit($id)
+        public function edit(Buku $buku)
         {
-            print_r($id);exit;
-            $buku = DB::table('buku')->where('buku',$id)->get();
-            return view('buku_edit',['buku' => $buku]);
+            // print_r($id);exit;
+            return view('editbuku',['buku' => $buku]);
         }
     
         /**
@@ -77,9 +76,14 @@ class HomeController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function update(Request $request, $id)
+        public function update(Request $request, Buku $buku)
         {
-            //
+            $data = $request->all();
+
+            $buku->update($data);
+    
+            return redirect()->route('buku.index');
+    
         }
     
         /**
@@ -88,8 +92,10 @@ class HomeController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy($id)
+        public function destroy(Buku $buku)
         {
-            //
+            $buku->delete();
+
+            return redirect()->route('buku.index');
         }
 }

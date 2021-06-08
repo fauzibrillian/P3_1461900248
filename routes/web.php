@@ -15,4 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class,'index']);
+Route::get('/buku/create', [HomeController::class, 'create']);
+Route::resource('buku', HomeController::class);
+
 
